@@ -1,0 +1,19 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Force batch scripts to always use CRLF line endings
+*.bat text eol=crlf
+
+# Force shell scripts to always use LF line endings
+*.sh text eol=lf
+gradlew text eol=lf
+
+# Denote all files that are truly binary and should not be modified
+*.jar binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+

@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: hello-cloud-aws
+
+logging:
+  level:
+    root: INFO
+    com.hellocloud: INFO

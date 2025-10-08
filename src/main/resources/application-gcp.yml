@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: hello-cloud-gcp
+
+logging:
+  level:
+    root: INFO
+    com.hellocloud: INFO
