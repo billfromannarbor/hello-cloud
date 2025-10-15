@@ -2,11 +2,30 @@ package com.hellocloud.controller
 
 import com.hellocloud.model.HealthResponse
 import com.hellocloud.service.CloudMetadataService
+import org.springframework.core.io.ClassPathResource
+import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.time.Instant
+
+@RestController
+class RootController {
+    
+    private val readmeContent: String by lazy {
+        try {
+            // Load README from classpath (bundled in the JAR)
+            ClassPathResource("README.md").inputStream.bufferedReader().use { it.readText() }
+        } catch (e: Exception) {
+            "# Hello Cloud\n\nWelcome to the Hello Cloud API!\n\n" +
+            "Visit /api/health or /api/hello for more information."
+        }
+    }
+    
+    @GetMapping("/", produces = [MediaType.TEXT_PLAIN_VALUE])
+    fun root(): String = readmeContent
+}
 
 @RestController
 @RequestMapping("/api")
