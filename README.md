@@ -111,31 +111,79 @@ hello-cloud/
 └── Dockerfile                 # Multi-cloud container image
 ```
 
-## Development
+## Local Development & Testing
 
-### Local Development
+**Yes! Everything still works locally.** The Lambda optimizations don't affect local development.
+
+### Quick Start (Development Mode)
+```bash
+# Standard Spring Boot development
+./gradlew bootRun
+
+# Access at http://localhost:8080
+curl http://localhost:8080/api/hello
+```
+
+### Easy Testing Script
+```bash
+# Quick test with Gradle
+./test-local.sh gradle
+
+# Test with Docker container
+./test-local.sh docker
+
+# Run test suite
+./test-local.sh test
+
+# Quick smoke test (if app already running)
+./test-local.sh quick
+```
+
+### Manual Testing
+
+#### Run with Gradle (Fastest)
 ```bash
 ./gradlew bootRun
 ```
 
-### Run Tests
+#### Build and Run JAR
+```bash
+./gradlew build
+java -jar build/libs/hello-cloud-1.0.0.jar
+```
+
+#### Test with Docker
+```bash
+docker build -t hello-cloud .
+docker run -p 8080:8080 hello-cloud
+```
+
+#### Run Tests
 ```bash
 ./gradlew test
 ```
 
-### Build JAR
-```bash
-./gradlew build
-```
+📖 **Full guide**: [LOCAL-TESTING.md](LOCAL-TESTING.md) - Comprehensive local testing options
 
 ## Documentation
 
+### General
 - [ARCHITECTURE.md](ARCHITECTURE.md) - System architecture
 - [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md) - Project overview
+- [QUICKSTART.md](QUICKSTART.md) - General getting started
+
+### Local Development
+- [LOCAL-TESTING.md](LOCAL-TESTING.md) - ⭐ Local development & testing guide
+
+### AWS Lambda
+- [LAMBDA-QUICKSTART.md](LAMBDA-QUICKSTART.md) - ⚡ Lambda quick deploy
+- [LAMBDA-PERFORMANCE.md](LAMBDA-PERFORMANCE.md) - Lambda optimization deep dive
+- [LAMBDA-ARCHITECTURE-DIAGRAM.md](LAMBDA-ARCHITECTURE-DIAGRAM.md) - Visual architecture
+- [LAMBDA-CHANGES-SUMMARY.md](LAMBDA-CHANGES-SUMMARY.md) - What changed and why
+
+### AWS Setup
 - [AWS-ECR-SETUP.md](AWS-ECR-SETUP.md) - ECR configuration
 - [AWS-OIDC-SETUP.md](AWS-OIDC-SETUP.md) - GitHub Actions OIDC setup
-- [LAMBDA-PERFORMANCE.md](LAMBDA-PERFORMANCE.md) - Lambda optimization guide
-- [LAMBDA-QUICKSTART.md](LAMBDA-QUICKSTART.md) - Lambda quick deploy
 
 ## License
 
