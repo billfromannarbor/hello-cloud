@@ -1,0 +1,58 @@
+# Lambda-specific configuration with optimizations for cold start
+server:
+  port: 8080
+  shutdown: graceful
+  tomcat:
+    # Optimize Tomcat for Lambda
+    threads:
+      max: 10 # Fewer threads needed
+      min-spare: 2
+    max-connections: 50
+
+spring:
+  main:
+    web-application-type: servlet
+    lazy-initialization: true # Critical for faster startup
+    banner-mode: off # Skip banner for faster startup
+
+  jpa:
+    open-in-view: false
+
+  jmx:
+    enabled: false # Disable JMX for faster startup
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+  datasource:
+    # Disable database if not needed
+    url: jdbc:h2:mem:testdb
+    hikari:
+      # Minimize connection pool for Lambda
+      maximum-pool-size: 5
+      minimum-idle: 1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when-authorized
+  health:
+    defaults:
+      enabled: false # Disable unnecessary health checks
+  metrics:
+    enable:
+      jvm: false # Disable JVM metrics for faster startup
+
+logging:
+  level:
+    org.springframework: WARN
+    com.hellocloud: INFO
+    org.apache.catalina: ERROR
+    org.apache.tomcat: ERROR
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

@@ -1,0 +1,8 @@
+{
+    "rawPath": "/api/hello",
+    "requestContext": {
+        "http": {
+            "method": "GET"
+        }
+    }
+}

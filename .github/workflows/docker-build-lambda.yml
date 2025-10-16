@@ -68,6 +68,7 @@ jobs:
                   cache-from: type=gha
                   cache-to: type=gha,mode=max
                   platforms: linux/amd64
+                  outputs: type=registry
 
             - name: Image digest
               run: echo ${{ steps.meta.outputs.digest }}
