@@ -341,7 +341,7 @@ server:
 ### Memory Management
 
 - **Heap Size**: Auto-configured by JVM based on container limits
-- **GC**: Uses G1GC (default in Java 17)
+- **GC**: Uses G1GC (default in Java 21)
 - **Native Memory**: Monitored via actuator metrics
 
 ## Future Enhancements

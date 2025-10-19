@@ -169,7 +169,7 @@ curl http://localhost:8080/actuator/prometheus
 |-----------|------------|
 | Language | Kotlin 1.9.22 |
 | Framework | Spring Boot 3.2.1 |
-| JVM | Java 17 |
+| JVM | Java 21 |
 | Build Tool | Gradle 8.5 |
 | Testing | JUnit 5, MockK |
 | Containerization | Docker |
